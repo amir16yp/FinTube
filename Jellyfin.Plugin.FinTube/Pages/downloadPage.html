@@ -21,18 +21,23 @@
 						<div class="fieldDescription">Your Media file will be stored here assuming JellyFin has Write Permissions, this will also recursively create the folder(s) required</div>
 					</div>
 
+					<div class="inputContainer">
+						<label class="inputLabel">Additional arguments for YT-DLP</label>
+						<input id="fintube-addargs" class="emby-input" name="fintube-addargs" />
+					</div>
 
 					<div class="checkboxContainer checkboxContainer-withDescription">
 						<label class="emby-checkbox-label">
 							<input id="fintube-audioonly" name="audioonly" type="checkbox" is="emby-checkbox" data-embycheckbox="true" class="emby-checkbox">
 							<span class="checkboxLabel">Audio Only</span>
-						<span class="checkboxOutline"><span class="material-icons checkboxIcon checkboxIcon-checked check" aria-hidden="true"></span><span class="material-icons checkboxIcon checkboxIcon-unchecked " aria-hidden="true"></span></span></label>
+							<span class="checkboxOutline"><span class="material-icons checkboxIcon checkboxIcon-checked check" aria-hidden="true"></span><span class="material-icons checkboxIcon checkboxIcon-unchecked " aria-hidden="true"></span></span>
+						</label>
 						<div class="fieldDescription">Check this if you want to store as mp3, otherwise the file is saved in mp4</div>
 					</div>
 
-					<div id="fintube-audiosettings" hidden>						
+					<div id="fintube-audiosettings" hidden>
 						<h3>Audio Settings (Require id3v2 to be configured properly)</h3>
-						
+
 						<div class="inputContainer">
 							<label class="inputLabel">Artist</label>
 							<input id="fintube-artist" class="emby-input" name="fintube-artist" />
@@ -134,7 +139,8 @@
 								"artist": 		getfintubeValue("artist"),
 								"album": 		getfintubeValue("album"),
 								"title": 		getfintubeValue("title"),
-								"track":		Number(getfintubeValue("track"))
+								"track": Number(getfintubeValue("track")),
+								"addargs": getfintubeValue("addargs")
 							}
 						
 

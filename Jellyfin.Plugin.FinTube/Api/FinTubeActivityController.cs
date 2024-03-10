@@ -52,7 +52,7 @@ public class FinTubeActivityController : ControllerBase
             public string album{get; set;} = "";
             public string title{get; set;} = "";
             public int track{get; set;} = 0;
-
+        public string addargs { get; set; }
         }
 
         [HttpPost("submit_dl")]
@@ -61,8 +61,8 @@ public class FinTubeActivityController : ControllerBase
         {
             try
             {
-                _logger.LogInformation("FinTubeDownload : {ytid} to {targetfoldeer} audio only: {audioonly}", data.ytid, data.targetfolder, data.audioonly);
-
+                _logger.LogInformation("FinTubeDownload : {ytid} to {targetfoldeer} audio only: {audioonly}, additonal args {addargs}", data.ytid, data.targetfolder, data.audioonly, data.addargs);
+                string addargs = data.addargs;
                 Dictionary<string, object> response = new Dictionary<string, object>();
                 PluginConfiguration? config = Plugin.Instance.Configuration;
                 String status = "";
@@ -101,7 +101,7 @@ public class FinTubeActivityController : ControllerBase
                 if(data.audioonly)
                     args = $"-x --audio-format mp3 -o \"{targetFilename}.%(ext)s\" {data.ytid}";
                 else
-                    args = $"-f mp4 -o \"{targetFilename}-%(title)s.%(ext)s\" {data.ytid}";
+                    args = $"{addargs} -o \"{targetFilename}-%(title)s.%(ext)s\" {data.ytid}";
 
                 status += $"Exec: {config.exec_YTDL} {args}<br>";
 
